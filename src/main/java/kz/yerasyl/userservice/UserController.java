@@ -35,11 +35,15 @@ public class UserController {
         return userService.getUserHistory(id);
     }
 
+    @GetMapping("/{id}/history/last")
+    public UserOrder getLastOrderForUser(@PathVariable Long id) {
+        return userService.getLastOrderForUser(id);
+    }
+
     @PostMapping("/{id}/history")
     public UserOrder addOrderToUserHistory(@PathVariable Long id, @RequestBody UserOrder newOrder) {
         return userService.addOrderToUserHistory(id, newOrder);
     }
-
 }
 
 
