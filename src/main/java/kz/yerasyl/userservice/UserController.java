@@ -3,6 +3,8 @@ package kz.yerasyl.userservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -27,6 +29,17 @@ public class UserController {
     public User getUserByPhone(@RequestParam String phone) {
         return userService.getUserByPhone(phone);
     }
+
+    @GetMapping("/{id}/history")
+    public List<UserOrder> GetParkingHistoryForUser(@PathVariable Long id) {
+        return userService.getUserHistory(id);
+    }
+
+    @PostMapping("/{id}/history")
+    public UserOrder addOrderToUserHistory(@PathVariable Long id, @RequestBody UserOrder newOrder) {
+        return userService.addOrderToUserHistory(id, newOrder);
+    }
+
 }
 
 

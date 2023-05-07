@@ -1,5 +1,6 @@
-package kz.yerasyl.userservice;
+package kz.yerasyl.userservice.jpa;
 
+import kz.yerasyl.userservice.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

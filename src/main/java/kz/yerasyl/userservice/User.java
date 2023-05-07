@@ -1,10 +1,8 @@
 package kz.yerasyl.userservice;
 
-
 import jakarta.persistence.*;
 
 import java.util.List;
-
 
 @Entity
 @Table(name = "users")
@@ -24,15 +22,13 @@ public class User {
     @Column(name = "car")
     private List<String> cars;
 
-    //private List<ParkingHistory> parkingHistory;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserOrder> parkingHistory;
 
     public Long getId() {
         return id;
     }
-
-//    public List<ParkingHistory> getParkingHistory() {
-//        return parkingHistory;
-//    }
 
     public String getPhone() {
         return phone;
@@ -46,15 +42,15 @@ public class User {
         return fullName;
     }
 
-    //    public void setParkingHistory(List<ParkingHistory> parkingHistory) {
-//        this.parkingHistory = parkingHistory;
-//    }
+    public List<UserOrder> getParkingHistory() {
+        return parkingHistory;
+    }
+
     public User(Long id, String phone, String fullName, List<String> cars) {//, List<ParkingHistory> parkingHistory) {
         this.id = id;
         this.phone = phone;
         this.fullName = fullName;
         this.cars = cars;
-        //this.parkingHistory = parkingHistory;
     }
 
     public User() {
@@ -70,6 +66,9 @@ public class User {
 
     public void setCarNumbers(List<String> cars) {
         this.cars = cars;
+    }
+    public void setParkingHistory(List<UserOrder> parkingHistory) {
+        this.parkingHistory = parkingHistory;
     }
 }
 
